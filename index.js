@@ -35,4 +35,25 @@ const getHistoricalData = async (ticker) => {
     console.log(end - start)
 };
 
-getHistoricalData('TSLA');
+const getAnalysisData = async (ticker) => {
+    const browser = await puppeteer.launch({
+        headless: true
+    })
+
+    const page = await browser.newPage();
+    await page.goto(`https://finance.yahoo.com/quote/${ticker}/analysis?p=${ticker}`)
+    const content = await page.content();
+    // #Col1-0-AnalystLeafPage-Proxy > section > table:nth-child(2) > tbody > tr:nth-child(5) > td:nth-child(2) > span
+    const $ = cheerio.load(content);
+    const lists = $(`#Col1-0-AnalystLeafPage-Proxy > section`);
+    const earningTable = $(lists).find(`table:nth-child(2) > tbody > tr:nth-child(5)`);
+
+    earningTable.map((index, item) => {
+        console.log($(item).find("td:nth-child(2)").text())
+        console.log($(item).find("td:nth-child(3)").text())
+        console.log($(item).find("td:nth-child(4)").text())
+        console.log($(item).find("td:nth-child(5)").text())
+    })
+} 
+
+getAnalysisData('AAPL')
