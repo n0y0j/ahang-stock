@@ -47,8 +47,16 @@ const getAnalysisData = async (ticker) => {
     const $ = cheerio.load(content);
     const lists = $(`#Col1-0-AnalystLeafPage-Proxy > section`);
     const earningTable = $(lists).find(`table:nth-child(2) > tbody > tr:nth-child(5)`);
+    const revenueTable = $(lists).find(`table:nth-child(3) > tbody > tr:nth-child(6)`);
 
     earningTable.map((index, item) => {
+        console.log($(item).find("td:nth-child(2)").text())
+        console.log($(item).find("td:nth-child(3)").text())
+        console.log($(item).find("td:nth-child(4)").text())
+        console.log($(item).find("td:nth-child(5)").text())
+    })
+
+    revenueTable.map((index, item) => {
         console.log($(item).find("td:nth-child(2)").text())
         console.log($(item).find("td:nth-child(3)").text())
         console.log($(item).find("td:nth-child(4)").text())
