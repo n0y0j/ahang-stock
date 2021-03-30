@@ -1,10 +1,8 @@
 const puppeteer = require("puppeteer")
 const cheerio = require("cheerio")
-var fs = require('fs')
 
 const getHistoricalData = async (ticker) => {
     
-    let start = new Date();
     var historicalData = []
 
     const browser = await puppeteer.launch({
@@ -31,9 +29,7 @@ const getHistoricalData = async (ticker) => {
         })
     })
 
-    let end = new Date();
     console.log(historicalData);
-    console.log(end - start)
 };
 
 const getEarningData = async (ticker) => {
@@ -48,7 +44,6 @@ const getEarningData = async (ticker) => {
     const $ = cheerio.load(content);
     const lists = $(`#Col1-0-AnalystLeafPage-Proxy > section`);
     const earningTable = $(lists).find(`table:nth-child(2) > tbody`);
-    const revenueTable = $(lists).find(`table:nth-child(3) > tbody > tr:nth-child(6)`);
 
     earning = {
         currentYear: {
@@ -66,6 +61,39 @@ const getEarningData = async (ticker) => {
     }
 
     console.log(earning)
+}
+
+const getRevenueData = async (ticker) => {
+    const browser = await puppeteer.launch({
+        headless: true
+    })
+
+    const page = await browser.newPage();
+    await page.goto(`https://finance.yahoo.com/quote/${ticker}/analysis?p=${ticker}`)
+    const content = await page.content();
+
+    const $ = cheerio.load(content);
+    const lists = $(`#Col1-0-AnalystLeafPage-Proxy > section`);
+    const revenueTable = $(lists).find(`table:nth-child(3) > tbody`);
+
+    revenue = {
+        currentYear: {
+            numberOfAnalysts: parseInt($(revenueTable).find("tr:nth-child(1) > td:nth-child(4)").text()),
+            average: $(revenueTable).find("tr:nth-child(2) > td:nth-child(4)").text(),
+            high: $(revenueTable).find("tr:nth-child(3) > td:nth-child(4)").text(),
+            low: $(revenueTable).find("tr:nth-child(4) > td:nth-child(4)").text(),
+            salesGrowth: $(revenueTable).find("tr:nth-child(6) > td:nth-child(4)").text(),
+        },
+        nextYear: {
+            numberOfAnalysts: parseInt($(revenueTable).find("tr:nth-child(1) > td:nth-child(5)").text()),
+            average: $(revenueTable).find("tr:nth-child(2) > td:nth-child(5)").text(),
+            high: $(revenueTable).find("tr:nth-child(3) > td:nth-child(5)").text(),
+            low: $(revenueTable).find("tr:nth-child(4) > td:nth-child(5)").text(),
+            salesGrowth: $(revenueTable).find("tr:nth-child(6) > td:nth-child(5)").text(),
+        }
+    }
+
+    console.log(revenue)
 }
 
 const getPriceTarget = async (ticker) => {
@@ -91,5 +119,3 @@ const getPriceTarget = async (ticker) => {
 
     console.log(priceTarget)
 }
-
-getEarningData('AAPL')
