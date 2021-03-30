@@ -36,7 +36,7 @@ const getHistoricalData = async (ticker) => {
     console.log(end - start)
 };
 
-const getAnalysisData = async (ticker) => {
+const getEarningData = async (ticker) => {
     const browser = await puppeteer.launch({
         headless: true
     })
@@ -47,34 +47,25 @@ const getAnalysisData = async (ticker) => {
 
     const $ = cheerio.load(content);
     const lists = $(`#Col1-0-AnalystLeafPage-Proxy > section`);
-    const earningTable = $(lists).find(`table:nth-child(2) > tbody > tr:nth-child(5)`);
+    const earningTable = $(lists).find(`table:nth-child(2) > tbody`);
     const revenueTable = $(lists).find(`table:nth-child(3) > tbody > tr:nth-child(6)`);
 
-    const temp = $('script:not([src])');
+    earning = {
+        currentYear: {
+            numberOfAnalysts: parseInt($(earningTable).find("tr:nth-child(1) > td:nth-child(4)").text()),
+            average: parseFloat($(earningTable).find("tr:nth-child(2) > td:nth-child(4)").text()),
+            high: parseFloat($(earningTable).find("tr:nth-child(3) > td:nth-child(4)").text()),
+            low: parseFloat($(earningTable).find("tr:nth-child(4) > td:nth-child(4)").text())
+        },
+        nextYear: {
+            numberOfAnalysts: parseInt($(earningTable).find("tr:nth-child(1) > td:nth-child(5)").text()),
+            average: parseFloat($(earningTable).find("tr:nth-child(2) > td:nth-child(5)").text()),
+            high: parseFloat($(earningTable).find("tr:nth-child(3) > td:nth-child(5)").text()),
+            low: parseFloat($(earningTable).find("tr:nth-child(4) > td:nth-child(5)").text())
+        }
+    }
 
-    console.log(temp[38].children[0].data)
-    
-    // var file = 'text.txt';
-    // fs.open(file,'w',function(err,fd){ if (err) throw err; console.log('file open complete'); });
-
-    fs.writeFile('text.txt', temp[38].children[0].data, 'utf8', function(error) {
-        console.log("write end")
-    })
-
-    // console.log(recoRating)
-    // earningTable.map((index, item) => {
-    //     console.log($(item).find("td:nth-child(2)").text())
-    //     console.log($(item).find("td:nth-child(3)").text())
-    //     console.log($(item).find("td:nth-child(4)").text())
-    //     console.log($(item).find("td:nth-child(5)").text())
-    // })
-
-    // revenueTable.map((index, item) => {
-    //     console.log($(item).find("td:nth-child(2)").text())
-    //     console.log($(item).find("td:nth-child(3)").text())
-    //     console.log($(item).find("td:nth-child(4)").text())
-    //     console.log($(item).find("td:nth-child(5)").text())
-    // })
+    console.log(earning)
 }
 
 const getPriceTarget = async (ticker) => {
@@ -101,4 +92,4 @@ const getPriceTarget = async (ticker) => {
     console.log(priceTarget)
 }
 
-getPriceTarget('GOOG')
+getEarningData('AAPL')
