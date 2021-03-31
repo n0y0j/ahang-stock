@@ -31,28 +31,28 @@ Type: `string` (추후 number로 변경 예정)
 const stock = requirer('@ahang/stock')
 
 const data = await stock.getHistoricalData('AAPL')
-[
-  {
-    date: 'Mar 30, 2021',
-    open: '120.11',
-    high: '120.40',
-    low: '118.86',
-    close: '119.90',
-    adj_close: '119.90',
-    volume: '85,523,800'
-  },
-  {
-    date: 'Mar 29, 2021',
-    open: '121.65',
-    high: '122.58',
-    low: '120.73',
-    close: '121.39',
-    adj_close: '121.39',
-    volume: '80,819,200'
-  },
-  ...
-  ...
-]
+// [
+//    {
+//      date: 'Mar 30, 2021',
+//      open: '120.11',
+//      high: '120.40',
+//      low: '118.86',
+//      close: '119.90',
+//      adj_close: '119.90',
+//      volume: '85,523,800'
+//    },
+//    {
+//      date: 'Mar 29, 2021',
+//      open: '121.65',
+//      high: '122.58',
+//      low: '120.73',
+//      close: '121.39',
+//      adj_close: '121.39',
+//      volume: '80,819,200'
+//    },
+//    ...
+//    ...
+// ]
 ```
 
 
