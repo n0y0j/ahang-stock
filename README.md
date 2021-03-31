@@ -1,6 +1,6 @@
 # @ahang/stock
 
-특정 미국 주식의 **주가 변동, 총수입(매출), 순이익, 분석가 분석** 데이터를 크롤링 해주는 패키지입니다.
+특정 미국 주식의 **주가 변동과 총수입(매출), 순이익, 분석가 분석** 데이터를 크롤링 해주는 패키지입니다.
 
 개인 웹 프로젝트를 위해 제작된 패키지입니다.
 <br />
@@ -63,7 +63,7 @@ const data = await stock.getHistoricalData('AAPL')
 
 Type: `number`
 
-특정 미국 주식의 현재부터 내년까지의 총수입(매출) 데이터를 json 형식으로 리턴합니다.
+특정 미국 주식의 **현재부터 내년까지의 총수입(매출)  데이터**를 **json** 형식으로 리턴합니다.
 
 ```javascript
 const stock = requirer('@ahang/stock')
@@ -93,7 +93,7 @@ const data = await stock.getEarningData('AAPL')
 
 Type: `string, number`
 
-특정 미국 주식의 현재부터 내년까지의 순이익 분석 데이터를 json 형식으로 리턴합니다.
+특정 미국 주식의 **현재부터 내년까지의 순이익 분석 데이터**를 **json** 형식으로 리턴합니다.
 
 ```javascript
 const stock = requirer('@ahang/stock')
@@ -125,7 +125,7 @@ const data = await stock.getRevenueData('AAPL')
 
 Type: `number`
 
-특정 미국 주식의 분석가 분석 데이터를 json 형식으로 리턴합니다.
+특정 미국 주식의 **분석가 분석 데이터**를 **json** 형식으로 리턴합니다.
 
 ```javascript
 const stock = requirer('@ahang/stock')
@@ -134,7 +134,7 @@ const data = await stock.getRevenueData('AAPL')
 // {
 //    numberOfAnalysts: 26,   참여한 분석가 수
 //    average: 151.83,        기업 평균 주가 예측
-//    high: 175,			  기업 높은 주가 예측
+//    high: 175,              기업 높은 주가 예측
 //    low: 80,                기업 낮은 주가 예측
 //    buy: 20,                구매를 추천하는 분석가 수
 //    hold: 4,                보류를 추천하는 분석가 수
