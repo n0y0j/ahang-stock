@@ -119,3 +119,5 @@ const getPriceTarget = async (ticker) => {
 
     console.log(priceTarget)
 }
+
+getPriceTarget('AAPL')
