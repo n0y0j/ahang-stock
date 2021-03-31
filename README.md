@@ -7,7 +7,7 @@
 <br />
 
 
-![issue badge](https://img.shields.io/badge/puppeteer-8.0.0-red)![issue badge](https://img.shields.io/badge/cheerio-1.0.0-orange)
+![issue badge](https://img.shields.io/badge/puppeteer-8.0.0-red)   ![issue badge](https://img.shields.io/badge/cheerio-1.0.0-orange)
 <br />
 <br />
 
