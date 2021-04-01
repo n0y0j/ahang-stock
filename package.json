@@ -1,6 +1,6 @@
 {
-  "name": "yahoo-finance",
-  "version": "0.0.1",
+  "name": "@ahang/stock",
+  "version": "0.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {

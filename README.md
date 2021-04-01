@@ -23,9 +23,9 @@ npm i @ahang/stock
 
 ### `getHistoricalData()`
 
-Type: `string` (추후 number로 변경 예정)
+Type: `date, number` (추후 number로 변경 예정)
 
-특정 미국 주식의 **1년 간의 주가 변동 데이터**를 **json** 형식으로 리턴합니다.
+특정 미국 주식의 **100일 간의 주가 변동 데이터**를 **json** 형식으로 리턴합니다.
 
 ```javascript
 const stock = requirer('@ahang/stock')
@@ -33,22 +33,22 @@ const stock = requirer('@ahang/stock')
 const data = await stock.getHistoricalData('AAPL')
 // [
 //    {
-//      date: 'Mar 30, 2021',
-//      open: '120.11',
-//      high: '120.40',
-//      low: '118.86',
-//      close: '119.90',
-//      adj_close: '119.90',
-//      volume: '85,523,800'
+//      date: 2021-03-31T15:00:00.000Z,
+//      open: 646.62,
+//      high: 672,
+//      low: 641.11,
+//      close: 667.93,
+//      adj_close: 667.93,
+//      volume: 33261700
 //    },
 //    {
-//      date: 'Mar 29, 2021',
-//      open: '121.65',
-//      high: '122.58',
-//      low: '120.73',
-//      close: '121.39',
-//      adj_close: '121.39',
-//      volume: '80,819,200'
+//      date: 2021-03-30T15:00:00.000Z,
+//      open: 601.75,
+//      high: 637.66,
+//      low: 591.01,
+//      close: 635.62,
+//      adj_close: 635.62,
+//      volume: 39432400
 //    },
 //    ...
 //    ...
