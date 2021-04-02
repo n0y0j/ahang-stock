@@ -28,7 +28,7 @@ Type: `date, number` (추후 number로 변경 예정)
 특정 미국 주식의 **100일 간의 주가 변동 데이터**를 **json** 형식으로 리턴합니다.
 
 ```javascript
-const stock = requirer('@ahang/stock')
+const stock = require('@ahang/stock')
 
 const data = await stock.getHistoricalData('AAPL')
 // [
@@ -66,7 +66,7 @@ Type: `number`
 특정 미국 주식의 **현재부터 내년까지의 총수입(매출)  데이터**를 **json** 형식으로 리턴합니다.
 
 ```javascript
-const stock = requirer('@ahang/stock')
+const stock = require('@ahang/stock')
 
 const data = await stock.getEarningData('AAPL')
 // {
@@ -96,7 +96,7 @@ Type: `string, number`
 특정 미국 주식의 **현재부터 내년까지의 순이익 분석 데이터**를 **json** 형식으로 리턴합니다.
 
 ```javascript
-const stock = requirer('@ahang/stock')
+const stock = require('@ahang/stock')
 
 const data = await stock.getRevenueData('AAPL')
 // {
@@ -128,7 +128,7 @@ Type: `number`
 특정 미국 주식의 **분석가 분석 데이터**를 **json** 형식으로 리턴합니다.
 
 ```javascript
-const stock = requirer('@ahang/stock')
+const stock = require('@ahang/stock')
 
 const data = await stock.getRevenueData('AAPL')
 // {
