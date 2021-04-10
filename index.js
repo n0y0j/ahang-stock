@@ -5,7 +5,6 @@ var {
   getPriceTargetData,
 } = require("./lib/stock");
 
-
 module.exports = {
   getHistoricalData: async (ticker) => {
     return await getHistoricalData(ticker);
